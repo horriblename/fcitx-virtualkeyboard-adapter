@@ -1,0 +1,8 @@
+[Addon]
+Name=virtualkeyboard-adapter
+_Comment=Automatically open virtual keyboards
+Category=Module
+Version=@PROJECT_VERSION@
+Enabled=True
+Library=virtualkeyboardadapter.so
+Type=SharedLibrary
