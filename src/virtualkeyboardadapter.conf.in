@@ -4,5 +4,5 @@ _Comment=Automatically open virtual keyboards
 Category=Module
 Version=@PROJECT_VERSION@
 Enabled=True
-Library=virtualkeyboardadapter.so
+Library=libvirtualkeyboardadapter
 Type=SharedLibrary
