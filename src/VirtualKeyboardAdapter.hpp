@@ -28,13 +28,13 @@ class VirtualKeyboardAdapter: public fcitx::AddonInstance {
         this->activateWatcher = this->instance->watchEvent(
             fcitx::EventType::InputContextInputMethodActivated,
             fcitx::EventWatcherPhase::PreInputMethod,
-            [this](fcitx::Event& _event) { system("notify-send activated"); }
+            [this](fcitx::Event& _event) { int _ = system("notify-send activated"); }
         );
 
         this->deactivateWatcher = this->instance->watchEvent(
             fcitx::EventType::InputContextInputMethodDeactivated,
             fcitx::EventWatcherPhase::PreInputMethod,
-            [this](fcitx::Event& _event) { system("notify-send deactivated"); }
+            [this](fcitx::Event& _event) { int _ = system("notify-send deactivated"); }
         );
     }
 
