@@ -1,2 +1,6 @@
 .nixd.json
 build
+.cache/clangd/index
+.direnv
+compile_commands.json
+.envrc
