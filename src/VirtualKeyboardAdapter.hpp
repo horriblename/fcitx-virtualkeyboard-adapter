@@ -1,4 +1,8 @@
 #include <cstdint>
+#include <fcitx-config/configuration.h>
+#include <fcitx-config/iniparser.h>
+#include <fcitx-config/option.h>
+#include <fcitx-config/rawconfig.h>
 #include <fcitx-utils/event.h>
 #include <fcitx/addonfactory.h>
 #include <fcitx/addoninstance.h>
@@ -13,6 +17,25 @@
 
 constexpr uint64_t VIRTUAL_KEYBOARD_ADAPTER_THROTTLE_USEC = 400000;
 constexpr int MAGIC = 4107;
+
+FCITX_CONFIGURATION(
+    VirtualKeyboardAdapterConfig,
+
+    fcitx::Option<std::string> activateCmd {
+        this,
+        "activateCmd",
+        "Command to activate virtual keyboard",
+        "notify-send activated",
+    };
+
+    fcitx::Option<std::string> deactivateCmd {
+        this,
+        "deactivateCmd",
+        "Command to deactivate virtual keyboard",
+        "notify-send deactivated"
+    };
+    // (useless comment to hack clang-format. yes really.)
+);
 
 class VirtualKeyboardAdapter: public fcitx::AddonInstance {
   public:
@@ -54,6 +77,19 @@ class VirtualKeyboardAdapter: public fcitx::AddonInstance {
     void onActivate(fcitx::Event&);
     void onDeactivate(fcitx::Event&);
     void onDebounceComplete(uint64_t usec);
+
+    static constexpr char configFile[] = "conf/virtualkeyboardadapter.conf";
+
+    VirtualKeyboardAdapterConfig config;
+
+    void reloadConfig() override {
+        fcitx::readAsIni(this->config, configFile);
+    }
+
+    void setConfig(const fcitx::RawConfig& config_) override {
+        this->config.load(config_, true);
+        fcitx::safeSaveAsIni(this->config, configFile);
+    }
 };
 
 class VirtualKeyboardAdapterFactory: public fcitx::AddonFactory {
