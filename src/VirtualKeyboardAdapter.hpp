@@ -23,14 +23,14 @@ FCITX_CONFIGURATION(
 
     fcitx::Option<std::string> activateCmd {
         this,
-        "activateCmd",
+        "ActivateCmd",
         "Command to activate virtual keyboard",
         "notify-send '[fcitx-virtual-keyboard-adapter] please set an on-activate command'",
     };
 
     fcitx::Option<std::string> deactivateCmd {
         this,
-        "deactivateCmd",
+        "DeactivateCmd",
         "Command to deactivate virtual keyboard",
         "notify-send '[fcitx-virtual-keyboard-adapter] please set an on-deactivate command'",
     };
