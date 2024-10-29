@@ -37,15 +37,16 @@ void VirtualKeyboardAdapter::onDeactivate(fcitx::Event& event) {
 }
 
 void VirtualKeyboardAdapter::onDebounceComplete(uint64_t) {
+    int _;
     switch (this->activeDebounce) {
     case NONE:
-        system("notify-send 'debounce ended with NONE'");
+        _ = system("notify-send 'debounce ended with NONE'");
         break;
     case ACTIVATE:
-        system("notify-send 'activate'");
+        _ = system(this->config.activateCmd.value().c_str());
         break;
     case DEACTIVATE:
-        system("notify-send 'deactivate'");
+        _ = system(this->config.deactivateCmd.value().c_str());
         break;
     }
 }
