@@ -25,14 +25,14 @@ FCITX_CONFIGURATION(
         this,
         "activateCmd",
         "Command to activate virtual keyboard",
-        "notify-send activated",
+        "notify-send '[fcitx-virtual-keyboard-adapter] please set an on-activate command'",
     };
 
     fcitx::Option<std::string> deactivateCmd {
         this,
         "deactivateCmd",
         "Command to deactivate virtual keyboard",
-        "notify-send deactivated"
+        "notify-send '[fcitx-virtual-keyboard-adapter] please set an on-deactivate command'",
     };
     // (useless comment to hack clang-format. yes really.)
 );
