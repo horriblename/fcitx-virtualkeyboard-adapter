@@ -10,6 +10,8 @@ void VirtualKeyboardAdapter::onActivate(fcitx::Event& event) {
     switch (this->activeDebounce) {
     case NONE:
         this->debouncer->setEnabled(true);
+        this->debouncer->setOneShot();
+        this->debouncer->setNextInterval(VIRTUAL_KEYBOARD_ADAPTER_THROTTLE_USEC);
         this->activeDebounce = ACTIVATE;
         break;
     case ACTIVATE:
@@ -25,6 +27,8 @@ void VirtualKeyboardAdapter::onDeactivate(fcitx::Event& event) {
     switch (this->activeDebounce) {
     case NONE:
         this->debouncer->setEnabled(true);
+        this->debouncer->setOneShot();
+        this->debouncer->setNextInterval(VIRTUAL_KEYBOARD_ADAPTER_THROTTLE_USEC);
         this->activeDebounce = DEACTIVATE;
         break;
     case ACTIVATE:
@@ -49,4 +53,5 @@ void VirtualKeyboardAdapter::onDebounceComplete(uint64_t) {
         _ = system(this->config.deactivateCmd.value().c_str());
         break;
     }
+    this->activeDebounce = NONE;
 }
