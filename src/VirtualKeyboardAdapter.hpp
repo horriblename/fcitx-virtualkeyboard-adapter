@@ -46,7 +46,7 @@ class VirtualKeyboardAdapter: public fcitx::AddonInstance {
             1000 /*I have no clue what this does */,
             [this](fcitx::EventSourceTime* _, uint64_t usec) { return false; }
         );
-        this->debouncer->setOneShot();
+        this->debouncer->setEnabled(false);
 
         this->activationWatcher = this->instance->watchEvent(
             fcitx::EventType::InputContextInputMethodActivated,
