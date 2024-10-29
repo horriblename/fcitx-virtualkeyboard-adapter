@@ -44,7 +44,10 @@ class VirtualKeyboardAdapter: public fcitx::AddonInstance {
             CLOCK_MONOTONIC,
             VIRTUAL_KEYBOARD_ADAPTER_THROTTLE_USEC,
             1000 /*I have no clue what this does */,
-            [this](fcitx::EventSourceTime* _, uint64_t usec) { return false; }
+            [this](fcitx::EventSourceTime* _, uint64_t usec) {
+                this->onDebounceComplete(usec);
+                return true;
+            }
         );
         this->debouncer->setEnabled(false);
 
