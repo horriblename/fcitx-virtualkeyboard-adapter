@@ -62,6 +62,8 @@ class VirtualKeyboardAdapter: public fcitx::AddonInstance {
             fcitx::EventWatcherPhase::PreInputMethod,
             [this](fcitx::Event& event) { this->onDeactivate(event); }
         );
+
+        this->reloadConfig();
     }
 
   private:
