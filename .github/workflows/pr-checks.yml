@@ -9,6 +9,6 @@ jobs:
       - uses: cachix/install-nix-action@v30
         with:
           github_access_token: ${{ secrets.GITHUB_TOKEN }}
-      - name: build and test hyprgrass
+      - name: build and test virtualkeyboard-adapter
         run: |
           nix build .#virtualkeyboard-adapter
