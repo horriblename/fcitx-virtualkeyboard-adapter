@@ -9,6 +9,8 @@ stdenv.mkDerivation {
 
   src = ./.;
 
+  cmakeFlags = ["-DCMAKE_CXX_STANDARD=20"];
+
   nativeBuildInputs = [cmake];
   buildInputs = [fcitx5];
 }
